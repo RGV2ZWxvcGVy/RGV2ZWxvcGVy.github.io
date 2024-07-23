@@ -1,0 +1,327 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFFF96;
+    margin: 1rem 0 1rem 0;
+}
+
+p {
+    margin: .25rem 0;
+}
+
+h1 {
+    font-size: 1.75rem;
+    margin: 0 0 .75rem 0;
+}
+
+
+header {
+    width: 100%;
+    background-color: #333333;
+    margin-bottom: 1rem;
+}
+
+.header-content {
+    text-align: center;
+}
+
+.stats-inner {
+    width: 100%;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding: 1rem 0;
+}
+
+.stats label {
+    display: inline-block;
+    padding: .25rem 0;
+}
+
+.stats progress#time {
+    width: 205px;
+    display: block;
+    margin: auto;
+}
+
+
+main {
+    width: 65%;
+    display: inline-block;
+}
+
+.main-content {
+    text-align: center;
+}
+
+.playing-field {
+    width: 715px;
+    user-select: none;
+    margin: auto;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    font-size: 1.75rem;
+    color: #FFFFFF;
+    background-color: #333333;
+    margin: .125rem;
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+}
+
+/* Specific style for a medium playing field (16 cards) */
+.card:first-child:nth-last-child(16),
+.card:first-child:nth-last-child(16) ~ .card,
+.card:first-child:nth-last-child(16) img,
+.card:first-child:nth-last-child(16) ~ .card img {
+    width: 150px;
+    height: 150px;
+    font-size: 2rem;
+}
+
+/* Specific style for a small playing field (4 cards) */
+.card:first-child:nth-last-child(4),
+.card:first-child:nth-last-child(4) ~ .card,
+.card:first-child:nth-last-child(4) img,
+.card:first-child:nth-last-child(4) ~ .card img {
+    width: 250px;
+    height: 250px;
+    font-size: 3rem;
+}
+
+.card.open {
+    background-color: #0075FF;
+}
+
+.card.found {
+    background-color: #197300;
+}
+
+.card.found img {
+    filter: grayscale(100%);
+}
+
+.card.closed:hover {
+    cursor: pointer;
+    color: #333333;
+    background-color: #FFFFFF;
+    transition: .3s;
+}
+
+.card div.inner-card {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card div img {
+    position: absolute;
+}
+
+.card.border {
+    border: 2px solid #333333;
+}
+
+
+aside {
+    width: 34.5%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.aside-content {
+    display: inline-block;
+    background-color: #FFFFFF;
+    border: 2px solid #333;
+    padding: 1rem 6rem;
+}
+
+.average-playtime {
+    margin-top: 1.25rem;
+}
+
+.playing-field-size {
+    margin-top: .75rem;
+}
+
+.aside-content form > div {
+    margin-top: 1rem;
+}
+
+.aside-content select {
+    width: 30%;
+}
+
+.aside-content select#picture {
+    width: 50%;
+}
+
+.color-settings .color-input button {
+    width: 40%;
+}
+
+.color-settings .color-input input {
+    width: 55%;
+    height: 32px;
+    border: unset;
+    vertical-align: middle;
+}
+
+.new-game {
+    margin: 1rem 0;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .stats progress#time {
+        width: 195px;
+    }
+
+    .playing-field {
+        width: 625px;
+    }
+
+    .card,
+    .card img {
+        width: 95px;
+        height: 95px;
+    }
+
+    /* Specific style for a medium playing field (16 cards) */
+    .card:first-child:nth-last-child(16),
+    .card:first-child:nth-last-child(16) ~ .card,
+    .card:first-child:nth-last-child(16) img,
+    .card:first-child:nth-last-child(16) ~ .card img {
+        width: 125px;
+        height: 125px;
+        font-size: 1.75rem;
+    }
+
+    .aside-content {
+        padding: 1rem 4rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    main {
+        width: 100%;
+    }
+    
+    aside {
+        width: 100%;
+        display: block;
+        margin: 1rem auto;
+    }
+
+    .aside-content {
+        width: fit-content;
+        display: block;
+        padding: 1rem 13.25rem;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 678px) {
+    .stats progress#time {
+        width: 165px;
+    }
+
+    .playing-field {
+        width: 575px;
+    }
+
+    .card,
+    .card img {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5rem;
+        margin: .1rem;
+    }
+
+    aside {
+        background-color: #FFFFFF;
+    }
+
+    .aside-content {
+        padding: 1rem 0;
+        border: unset;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .stats progress#time {
+        width: 121px;
+    }
+
+    .playing-field {
+        width: 400px;
+    }
+
+    .card,
+    .card img {
+        width: 58px;
+        height: 58px;
+        font-size: 1.25rem;
+        margin: .085rem;
+    }
+
+    /* Specific style for a medium playing field (16 cards) */
+    .card.border:first-child:nth-last-child(16),
+    .card.border:first-child:nth-last-child(16) ~ .card {
+        width: 75px;
+        height: 75px;
+        font-size: 1.5rem;
+    }
+
+    .card:first-child:nth-last-child(16),
+    .card:first-child:nth-last-child(16) ~ .card,
+    .card:first-child:nth-last-child(16) img,
+    .card:first-child:nth-last-child(16) ~ .card img {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5rem;
+    }
+    
+    /* Specific style for a small playing field (4 cards) */
+    .card:first-child:nth-last-child(4),
+    .card:first-child:nth-last-child(4) ~ .card,
+    .card:first-child:nth-last-child(4) img,
+    .card:first-child:nth-last-child(4) ~ .card img {
+        width: 175px;
+        height: 175px;
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .stats progress#time {
+        width: 105px;
+    }
+
+    .playing-field {
+        width: 375px;
+    }
+
+    .card.border {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+        margin: .05rem;
+    }
+
+    .card,
+    .card img {
+        width: 55px;
+        height: 55px;
+    }
+}

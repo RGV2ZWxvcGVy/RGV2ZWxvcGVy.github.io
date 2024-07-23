@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript Memory</title>
+    <link rel="stylesheet" href="style.css" id="memoryStyle" />
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="stats">
+                <div class="stats-inner">
+                    <h1>Javascript Memory</h1>
+                    <p>Verlopen tijd: <span id="elapsedTime">0</span> seconden</p>
+                    <p>Gevonden kaart-paren: <span id="foundCardPairs">0</span></p>
+                    
+                    <label for="time">Resterende tijd: <span id="remainingTime">252</span> seconden</label>
+                    <progress name="time" id="time" value="252" max="252"></progress>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="main-content">
+            <div class="playing-field">
+                <div class="inner-field" id="playingField"></div>
+            </div>
+        </div>
+    </main>
+    <aside>
+        <div class="aside-content">
+            <div class="top-five">
+                <h3>Top vijf</h3>
+                <ol>
+                    <li>Barack Obama: <strong>178</strong></li>
+                    <li>Bernie Sanders: <strong>204</strong></li>
+                    <li>Hillary Clinton: <strong>267</strong></li>
+                    <li>Donald Trump: <strong>387</strong></li>
+                    <li>Jeb Bush: <strong>453</strong></li>
+                </ol>
+            </div>
+
+            <div class="average-playtime">
+                <div>
+                    <strong>Gemiddelde speeltijd</strong>
+                </div>
+                <div>298 seconden</div>
+            </div>
+
+            <form id="settingsForm">
+                <div class="characters">
+                    <label for="character">
+                        <strong>Karakter op kaarten</strong>
+                    </label><br />
+                    <select name="character" id="character">
+                        <option>@</option>
+                        <option>#</option>
+                        <option>%</option>
+                        <option selected>+</option>
+                        <option>X</option>
+                    </select>
+                </div>
+
+                <div class="pictures">
+                    <label for="picture">
+                        <strong>Kies hier uw plaatjes</strong>
+                    </label><br />
+                    <select name="picture" id="picture">
+                        <option value="letters">Letters</option>
+                        <option value="randomPictures">Willekeurig</option>
+                    </select>
+                </div>
+
+                <div class="playing-field-size">
+                    <label for="size">
+                        <strong>Afmeting bord</strong>
+                    </label><br />
+                    <select name="size" id="size">
+                        <option>2</option>
+                        <option>4</option>
+                        <option selected>6</option>
+                    </select>
+                </div>
+
+                <div class="color-settings">
+                    <div class="color-input">
+                        <button type="button">
+                            <label for="cardColor">Kaartkleur</label>
+                        </button>
+                        <input type="color" name="cardColor" id="cardColor" value="#333333" />
+                    </div>
+    
+                    <div class="color-input">
+                        <button type="button">
+                            <label for="openCardColor">Open</label>
+                        </button>
+                        <input type="color" name="openCardColor" id="openCardColor" value="#0075FF" />
+                    </div>
+    
+                    <div class="color-input">
+                        <button type="button">
+                            <label for="foundCardColor">Gevonden</label>
+                        </button>
+                        <input type="color" name="foundCardColor" id="foundCardColor" value="#197300" />
+                    </div>
+                </div>
+    
+                <div class="new-game">
+                    <input type="submit" value="Nieuw spel" />
+                </div>
+            </form>
+        </div>
+    </aside>
+    <footer>
+        <script src="script.js"></script>
+    </footer>
+</body>
+</html>
