@@ -2,13 +2,13 @@
 const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF'];
 let currentColorIndex = 0;
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let cards = new Cards();
 
     // Generate the cards with letters or pictures based on the settings
     GameSettings.pictures ? cards.generatePictureCards() : cards.generateCards();
 
-    document.getElementById("settingsForm").addEventListener("submit", function(e) {
+    document.getElementById("settingsForm").addEventListener("submit", function (e) {
         // Prevent reloading the page
         e.preventDefault();
         // Start a new game with the provided settings
@@ -76,7 +76,7 @@ function gameOver(maxTimeElapsed) {
 // Update the timers in the header
 function updateTimers() {
     let elapsedTime = 1;
-    window.elapsedTimer = setInterval(function() {
+    window.elapsedTimer = setInterval(function () {
         if (elapsedTime >= GameSettings.totalPlayTime) {
             gameOver(true);
         }
@@ -123,7 +123,7 @@ async function shufflePictures() {
     let pictures = [];
 
     for (let i = 0; i < (GameSettings.totalCards / 2); i++) {
-        promiseRandomPicture();
+        promiseRandomPicture(i);
     }
 
     // We could catch on error, however the memory game is not playable with one picture missing
@@ -138,16 +138,17 @@ async function shufflePictures() {
 }
 
 // Get a random picture from Lorem Picsum
-function promiseRandomPicture() {
+function promiseRandomPicture(index) {
     window.allPromises ??= [];
 
     // Fetch a picture as a blob, to create an object url later on
-    let promise = new Promise(function(resolve, reject) {
+    let promise = new Promise(function (resolve, reject) {
         let request = new XMLHttpRequest();
         request.responseType = "blob";
-        request.open("GET", "https://picsum.photos/250/", true);
+        // Disable caching the request by appending an unique index to the url, so the pictures cannot be the same
+        request.open("GET", "https://picsum.photos/250?index=" + index, true);
 
-        request.onload = function() {
+        request.onload = function () {
             if (request.status == 200) {
                 resolve(request.response);
             }
@@ -169,7 +170,7 @@ function updateFoundCardPairs(foundCardPairs) {
 
 // Celebration mode for when the player has won the game
 function updateColors() {
-    window.foo = setInterval(function() {
+    window.foo = setInterval(function () {
         let cards = document.getElementsByClassName("card");
         for (let i = 0; i < cards.length; i++) {
             cards[i].style.transition = 'background-color 1s ease';
@@ -194,8 +195,7 @@ function removeClass(element, className) {
 
 
 // Represents the deck of cards in the memory game
-class Cards
-{
+class Cards {
     constructor() {
         this.cards = [];
 
@@ -216,7 +216,7 @@ class Cards
         for (let i = 0; i < this.cards.length; i++) {
             let card = this.cards[i];
             let cardDOM = card.getCardAsDOM(card.id);
-            cardDOM.addEventListener("click", function() {
+            cardDOM.addEventListener("click", function () {
                 card.handleClick();
             });
         }
@@ -260,8 +260,7 @@ class Cards
 }
 
 // Represents a card of the deck of cards in the memory game
-class Card
-{
+class Card {
     constructor(id, value) {
         this.id = id
         this.value = value;
@@ -270,14 +269,14 @@ class Card
 
     open(cardDOM) {
         cardDOM.innerHTML = GameSettings.pictures ?
-        cardDOM.innerHTML.replace(GameSettings.character, "<span>" + GameSettings.character + "</span><img src=\"" + this.value + "\">") :
-        cardDOM.innerHTML.replace(GameSettings.character, this.value);
+            cardDOM.innerHTML.replace(GameSettings.character, "<span>" + GameSettings.character + "</span><img src=\"" + this.value + "\">") :
+            cardDOM.innerHTML.replace(GameSettings.character, this.value);
     }
 
     close(cardDOM) {
         cardDOM.innerHTML = GameSettings.pictures ?
-        cardDOM.innerHTML.replace("<span>" + GameSettings.character + "</span><img src=\"" + this.value + "\">", GameSettings.character) :
-        cardDOM.innerHTML.replace(this.value, GameSettings.character);
+            cardDOM.innerHTML.replace("<span>" + GameSettings.character + "</span><img src=\"" + this.value + "\">", GameSettings.character) :
+            cardDOM.innerHTML.replace(this.value, GameSettings.character);
     }
 
     // Handles most of the logic when opening, closing, and finding matches of cards to prevent duplicate code
@@ -380,8 +379,7 @@ class Card
 }
 
 // The state of a card object
-class State
-{
+class State {
     constructor() {
         this.open = false;
         this.closed = true;
@@ -390,8 +388,7 @@ class State
 }
 
 // The possible states that a card can contain
-class CardState
-{
+class CardState {
     // Write in uppercase to indicate that these properties should be constant
     static OPEN = "open";
     static CLOSED = "closed";
@@ -401,8 +398,7 @@ class CardState
 }
 
 // Contains the current state of the game
-class GameState
-{
+class GameState {
     static firstFlippedCard = null;
     static lastFlippedCard = null;
     static clickInProgress = false;
@@ -411,8 +407,7 @@ class GameState
 }
 
 // Represents all the dynamic settings in the memory game
-class GameSettings
-{
+class GameSettings {
     static letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static character = "+";
     static pictures = false;
